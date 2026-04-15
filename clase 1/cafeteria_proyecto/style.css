@@ -1,0 +1,57 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f1ee;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  padding: 20px;
+}
+
+h1 {
+  color: #6b4f4f;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background: #6b4f4f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+button:hover {
+  background: #8b5e5e;
+}
+
+.pedidos-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.pedido {
+  background: white;
+  padding: 10px;
+  width: 250px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.estado {
+  font-weight: bold;
+}
+
+.proceso {
+  color: orange;
+}
+
+.completado {
+  color: green;
+}
