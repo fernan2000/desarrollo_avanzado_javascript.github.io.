@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sistema de Reservas - Restaurante</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f5f0;
+      color: #333;
+      padding: 2rem;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.6rem;
+      margin-bottom: 0.3rem;
+      color: #1a1a1a;
+    }
+
+    p.subtitle {
+      text-align: center;
+      color: #777;
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 1.5rem;
+      max-width: 480px;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+
+    .card h2 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: #444;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 0.6rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      color: #555;
+      margin-bottom: 4px;
+      margin-top: 12px;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+
+    input:focus { border-color: #7cc84a; }
+
+    button {
+      width: 100%;
+      margin-top: 1.2rem;
+      padding: 0.75rem;
+      background: #c8954a;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    button:hover  { background: #b5dea7; }
+    button:active { transform: scale(0.98); }
+    button:disabled { background: #ccc; cursor: not-allowed; }
+
+    /* Log de eventos */
+    #log {
+      max-width: 480px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .log-entry {
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 0.88rem;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .log-entry.info    { background: #eef4ff; color: #1a4a8a; border-left: 3px solid #5b8dee; }
+    .log-entry.success { background: #edfaf3; color: #1a6640; border-left: 3px solid #34c77b; }
+    .log-entry.error   { background: #fff0f0; color: #8a1a1a; border-left: 3px solid #e55; }
+    .log-entry.warning { background: #fffbea; color: #479657; border-left: 3px solid #f0c040; }
+
+    .log-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+    .log-content strong { display: block; font-size: 0.82rem; opacity: 0.6; margin-bottom: 2px; }
+
+/*mesas disponibles*/
+    .mesas-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fdf6ee;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.88rem;
+      margin-bottom: 0.5rem;
+      color: #312e1a;
+      border: 1px solid #f0ddb0;
+    }
+
+    .mesas-info span { font-weight: 700; font-size: 1.1rem; color: #4ac86c; }
+  </style>
+</head>
+<body>
+
+  <h1>🍽️ Reservas en línea</h1>
+  <p class="subtitle">Sistema con Promesas y async/await</p>
+
+  <div class="card">
+    <h2>Nueva reserva</h2>
+
+    <div class="mesas-info">
+      Mesas disponibles hoy: <span id="mesas-disp">19</span>
+    </div>
+
+    <label for="nombre">Nombre del cliente</label>
+    <input type="text" id="nombre" placeholder="Ej. Ana García" />
+
+    <label for="mesas">Número de mesas solicitadas</label>
+    <input type="number" id="mesas" min="1" max="20" placeholder="Ej. 2" />
+
+    <button id="btn-reservar" onclick="iniciarReserva()">
+      Hacer reserva
+    </button>
+  </div>
+
+  <div id="log"></div>
+
+  <script src="reservas.js"></script>
+</body>
+</html>
