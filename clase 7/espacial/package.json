@@ -1,0 +1,12 @@
+{
+  "name": "espacial",
+  "version": "1.0.0",
+  "description": "Registro de planetas",
+  "main": "index.js",
+  "scripts": {
+    "explorar": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

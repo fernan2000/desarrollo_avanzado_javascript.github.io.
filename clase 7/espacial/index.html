@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expedicion Espacial </title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: #0a0a1a;
+      color: #e0e0ff;
+      font-family: 'Courier New', monospace;
+      padding: 2rem 1rem;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, #fff 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 60%, #fff 0%, transparent 100%),
+        radial-gradient(1px 1px at 50% 10%, #fff 0%, transparent 100%),
+        radial-gradient(1px 1px at 70% 80%, #fff 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 40%, #fff 0%, transparent 100%),
+        radial-gradient(1px 1px at 20% 90%, #fff 0%, transparent 100%),
+        radial-gradient(1px 1px at 60% 50%, #fff 0%, transparent 100%),
+        radial-gradient(1px 1px at 80% 15%, #fff 0%, transparent 100%),
+        radial-gradient(1px 1px at 40% 75%, #fff 0%, transparent 100%),
+        radial-gradient(1px 1px at 15% 45%, #fff 0%, transparent 100%),
+        radial-gradient(1px 1px at 85% 65%, #fff 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 30%, #fff 0%, transparent 100%),
+        radial-gradient(1px 1px at 95% 85%, #fff 0%, transparent 100%),
+        radial-gradient(1px 1px at 5%  55%, #fff 0%, transparent 100%),
+        radial-gradient(1px 1px at 75% 25%, #fff 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .contenedor {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      letter-spacing: 0.1em;
+      color: #c8d8ff;
+      text-shadow: 0 0 20px #4466ff88;
+      margin-bottom: 0.4rem;
+    }
+
+    header p {
+      font-size: 0.85rem;
+      color: #8899cc;
+    }
+
+    /* Resumen */
+    .resumen {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      background: #111133;
+      border: 1px solid #2233aa44;
+      border-radius: 6px;
+      padding: 0.8rem 1.5rem;
+      text-align: center;
+    }
+
+    .stat span {
+      display: block;
+      font-size: 1.8rem;
+      color: #7799ff;
+    }
+
+    .stat p {
+      font-size: 0.72rem;
+      color: #667799;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Grid de tarjetas */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .tarjeta {
+      background: #0d0d2b;
+      border: 1px solid #223388;
+      border-radius: 8px;
+      padding: 1.3rem;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      animation: aparecer 0.5s ease both;
+    }
+
+    .tarjeta:hover {
+      transform: translateY(-4px);
+      border-color: #4466cc;
+      box-shadow: 0 8px 24px #1122aa33;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .tarjeta:nth-child(1) { animation-delay: 0.05s; }
+    .tarjeta:nth-child(2) { animation-delay: 0.10s; }
+    .tarjeta:nth-child(3) { animation-delay: 0.15s; }
+    .tarjeta:nth-child(4) { animation-delay: 0.20s; }
+    .tarjeta:nth-child(5) { animation-delay: 0.25s; }
+
+    .tarjeta-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .numero {
+      font-size: 0.7rem;
+      color: #445588;
+      min-width: 24px;
+    }
+
+    .nombre {
+      font-size: 1.05rem;
+      color: #aabfff;
+      font-weight: bold;
+    }
+
+    .badge {
+      margin-left: auto;
+      font-size: 0.65rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: bold;
+    }
+
+    .badge.habitable {
+      background: #0d3322;
+      color: #44ee88;
+      border: 1px solid #33aa66;
+    }
+
+    .badge.no-habitable {
+      background: #2a1122;
+      color: #cc5577;
+      border: 1px solid #883344;
+    }
+
+    .descripcion {
+      font-size: 0.82rem;
+      color: #7788aa;
+      line-height: 1.5;
+      margin-bottom: 0.9rem;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: #445577;
+      border-top: 1px solid #1a2244;
+      padding-top: 0.7rem;
+      margin-top: 0.2rem;
+    }
+
+    .meta span { color: #6677aa; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.75rem;
+      color: #334466;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="contenedor">
+
+    <header>
+      <h1>🚀 Registro Planetario</h1>
+      <p>Expedición Espacial — Base de datos de planetas descubiertos</p>
+    </header>
+
+    <div class="resumen" id="resumen"></div>
+
+    <div class="grid" id="grid"></div>
+
+    <footer>
+      <p>// Misión cumplida, Explorador Espacial 🌌</p>
+    </footer>
+
+  </div>
+
+  <script>
+
+
+const planetas = [
+      {
+        nombre: "Titán",
+        descripcion: "La luna mas grande de Saturno, con lagos de metano liquido en su superficie",
+        descubiertoEn: "1655",
+        tipo: "Luna",
+        habitable: false
+      },
+      {
+        nombre: "Proxima Centauri b",
+        descripcion: "Un exoplaneta rocoso en la zona habitable de su estrella",
+        descubiertoEn: "2016",
+        tipo: "Exoplaneta",
+        habitable: true
+      },
+      {
+        nombre: "calisto",
+        descripcion: "Luna de Jupiter con un océano de agua liquida oculto bajo su gruesa capa de hielo",
+        descubiertoEn: "1610",
+        tipo: "Luna",
+        habitable: true
+      },
+      {
+        nombre: "Kepler-452b",
+        descripcion: "Llamado el primo de la Tierra",
+        descubiertoEn: "2015",
+        tipo: "Exoplaneta",
+        habitable: true
+      },
+      {
+        nombre: "Encelado",
+        descripcion: "Luna de Saturno que expulsa geiseres de vapor de agua ",
+        descubiertoEn: "1789",
+        tipo: "Luna",
+        habitable: false
+      }
+    ];
+
+
+
+    function renderResumen() {
+      const habitables = planetas.filter(p => p.habitable).length;
+      const tipos = [...new Set(planetas.map(p => p.tipo))].length;
+
+      const resumenEl = document.getElementById('resumen');
+      resumenEl.innerHTML = `
+        <div class="stat">
+          <span>${planetas.length}</span>
+          <p>Planetas registrados</p>
+        </div>
+        <div class="stat">
+          <span>${habitables}</span>
+          <p>Potencialmente habitables</p>
+        </div>
+        <div class="stat">
+          <span>${planetas.length - habitables}</span>
+          <p>No habitables</p>
+        </div>
+        <div class="stat">
+          <span>${tipos}</span>
+          <p>Tipos distintos</p>
+        </div>
+      `;
+    }
+
+
+
+    function renderPlanetas() {
+      const grid = document.getElementById('grid');
+
+      planetas.forEach((planeta, i) => {
+        const tarjeta = document.createElement('div');
+        tarjeta.className = 'tarjeta';
+        tarjeta.innerHTML = `
+          <div class="tarjeta-header">
+            <span class="numero">#${String(i + 1).padStart(2, '0')}</span>
+            <span class="nombre">${planeta.nombre}</span>
+            <span class="badge ${planeta.habitable ? 'habitable' : 'no-habitable'}">
+              ${planeta.habitable ? '🌱 Habitable' : '❌ No habitable'}
+            </span>
+          </div>
+          <p class="descripcion">${planeta.descripcion}</p>
+          <div class="meta">
+            <div>Tipo: <span>${planeta.tipo}</span></div>
+            <div>Descubierto: <span>${planeta.descubiertoEn}</span></div>
+          </div>
+        `;
+        grid.appendChild(tarjeta);
+      });
+    }
+
+
+
+
+    renderResumen();
+    renderPlanetas();
+  </script>
+
+</body>
+</html>
