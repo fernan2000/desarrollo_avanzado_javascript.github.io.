@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Consumo de APIs - Rick & Morty</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f2f5;
+      color: #333;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      color: #1a1a2e;
+    }
+
+    p.subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .botones {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+
+    button:hover { opacity: 0.88; }
+    button:active { transform: scale(0.97); }
+
+    #btn-fetch {
+      background: #0077b6;
+      color: white;
+    }
+
+    #btn-axios {
+      background: #5e60ce;
+      color: white;
+    }
+
+    #metodo-activo {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: #888;
+      min-height: 1.2rem;
+    }
+
+    #metodo-activo span {
+      font-weight: 700;
+      color: #333;
+    }
+
+    #loading {
+      text-align: center;
+      font-size: 1rem;
+      color: #555;
+      display: none;
+      margin-bottom: 1rem;
+    }
+
+    #error-msg {
+      text-align: center;
+      color: #c0392b;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: none;
+    }
+
+    #data-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1.2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .card:hover { transform: translateY(-4px); }
+
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body {
+      padding: 0.7rem;
+    }
+
+    .card-body h3 {
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+      color: #1a1a2e;
+    }
+
+    .card-body p {
+      font-size: 0.78rem;
+      color: #777;
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 4px;
+    }
+
+    .alive  { background: #2ecc71; }
+    .dead   { background: #e74c3c; }
+    .unknown { background: #aaa; }
+  </style>
+</head>
+<body>
+
+  <h1>🛸 Rick & Morty - Consumo de APIs</h1>
+  <p class="subtitle">Compara cómo trabajan <strong>fetch</strong> y <strong>Axios</strong> con la misma API</p>
+
+  <div class="botones">
+    <button id="btn-fetch" onclick="obtenerConFetch()">
+      🔵 Cargar con Fetch
+    </button>
+    <button id="btn-axios" onclick="obtenerConAxios()">
+      🟣 Cargar con Axios
+    </button>
+  </div>
+
+  <div id="metodo-activo"></div>
+  <div id="loading">⏳ Cargando personajes...</div>
+  <div id="error-msg"></div>
+  <div id="data-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
