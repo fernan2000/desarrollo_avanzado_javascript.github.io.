@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registro de Eventos</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="container">
+    <div class="form-header">
+      <h1>📋 Registro de Eventos</h1>
+      <p>Completa el formulario para asegurar tu lugar</p>
+    </div>
+
+    <form id="registro-form" novalidate>
+
+      <div class="section">
+        <h2 class="section-title">Datos personales</h2>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="nombre">Nombre completo <span class="req">*</span></label>
+            <input type="text" id="nombre" placeholder="Ej. Ana García López"/>
+            <span class="error-msg" id="err-nombre"></span>
+          </div>
+          <div class="field">
+            <label for="correo">Correo electrónico <span class="req">*</span></label>
+            <input type="email" id="correo" placeholder="correo@ejemplo.com"/>
+            <span class="error-msg" id="err-correo"></span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="telefono">Teléfono <span class="req">*</span></label>
+            <input type="tel" id="telefono" placeholder="10 dígitos, ej. 5512345678"/>
+            <span class="error-msg" id="err-telefono"></span>
+          </div>
+          <div class="field">
+            <label for="edad">Edad <span class="req">*</span></label>
+            <input type="number" id="edad" placeholder="Ej. 25" min="1" max="120"/>
+            <span class="error-msg" id="err-edad"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- intereses -->
+      <div class="section">
+        <h2 class="section-title">Intereses <span class="req">*</span></h2>
+        <p class="section-hint">Selecciona al menos 2 temas de tu interes</p>
+        <div class="checkbox-grid">
+          <label class="check-item"><input type="checkbox" name="intereses" value="tecnologia"/> Tecnologia</label>
+          <label class="check-item"><input type="checkbox" name="intereses" value="negocios"/>  Negocios</label>
+          <label class="check-item"><input type="checkbox" name="intereses" value="diseno"/>    Diseño</label>
+          <label class="check-item"><input type="checkbox" name="intereses" value="marketing"/> Marketing</label>
+          <label class="check-item"><input type="checkbox" name="intereses" value="finanzas"/>  Finanzas</label>
+          <label class="check-item"><input type="checkbox" name="intereses" value="salud"/>     Salud y bienestar</label>
+        </div>
+        <span class="error-msg" id="err-intereses"></span>
+      </div>
+
+      <!--horario -->
+      <div class="section">
+        <h2 class="section-title">Horario preferido <span class="req">*</span></h2>
+        <div class="radio-group">
+          <label class="radio-item"><input type="radio" name="horario" value="manana"/>  🌅 Mañana (9:00 – 12:00)</label>
+          <label class="radio-item"><input type="radio" name="horario" value="tarde"/>   ☀️ Tarde (13:00 – 16:00)</label>
+          <label class="radio-item"><input type="radio" name="horario" value="noche"/>   🌙 Noche (17:00 – 20:00)</label>
+        </div>
+        <span class="error-msg" id="err-horario"></span>
+      </div>
+
+      <!-- fecha -->
+      <div class="section">
+        <h2 class="section-title">Fecha del evento <span class="req">*</span></h2>
+        <div class="field" style="max-width:260px">
+          <input type="date" id="fecha"/>
+          <span class="error-msg" id="err-fecha"></span>
+        </div>
+      </div>
+
+      <!-- archivo -->
+      <div class="section">
+        <h2 class="section-title">Identificacion <span class="opcional">(opcional)</span></h2>
+        <p class="section-hint">PDF, JPG o PNG · máximo 2 MB</p>
+        <label class="file-label" for="archivo">
+          <span id="file-text">📎 Seleccionar archivo</span>
+          <input type="file" id="archivo" accept=".pdf,.jpg,.jpeg,.png"/>
+        </label>
+        <span class="error-msg" id="err-archivo"></span>
+      </div>
+
+      <!-- terminos -->
+      <div class="section terms-row">
+        <label class="check-item">
+          <input type="checkbox" id="terminos"/>
+          Acepto los <a href="#" onclick="return false">terminos y condiciones</a>
+        </label>
+        <span class="error-msg" id="err-terminos"></span>
+      </div>
+
+      <button type="submit" id="btn-submit">registrarme al evento</button>
+    </form>
+
+
+    
+    <div id="modal" class="modal hidden">
+      <div class="modal-box">
+        <div class="modal-icon">🎉</div>
+        <h2>¡Registro exitoso!</h2>
+        <p id="modal-msg"></p>
+        <button onclick="cerrarModal()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="validaciones.js"></script>
+</body>
+</html>
