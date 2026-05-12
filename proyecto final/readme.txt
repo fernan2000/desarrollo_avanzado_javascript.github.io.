@@ -1,8 +1,31 @@
 
+  ADIVINA EL NUMERO - JUEGO FINAL
 
-Adivina el número (1 al 100).** Escribe un número, presiona "ADIVINAR" y el juego te dirá si es más alto o más bajo. Acierta para ganar. El juego muestra termómetro de proximidad, historial de intentos y guarda tu mejor puntaje en localStorage.
 
-**Cómo abrir:** Entra a la carpeta `proyecto final` y abre `index.html` en tu navegador. Si no funciona, usa Live Server en VSCode.
+¿COMO SE JUEGA?
 
-**Tecnologías:** HTML, CSS y JavaScript.
+- Adivina un numero secreto entre 1 y 100.
+- Escribe tu numero y presiona "ADIVINAR" o ENTER.
+- Recibiras pistas: "MAS ALTO" o "MAS BAJO".
+- El termometro muestra que tan cerca estas.
+- El historial guarda todos tus intentos.
+- Al acertar, aparece una pantalla de victoria.
+- Se guarda tu mejor puntaje (menos intentos).
+
+
+
+COMO ABRIR EL JUEGO
+
+1. Ve a la carpeta "proyecto final"
+2. Abre el archivo "index.html" en tu navegador
+   (doble click o clic derecho > Abrir con)
+3. Si no funciona correctamente, usa Live Server en VSCode
+
+
+
+ARCHIVOS PRINCIPALES
+
+- index.html  → Pantalla del juego
+- main.js     → Lógica completa
+- style.css   → Diseño y animaciones
 
