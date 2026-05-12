@@ -4,13 +4,13 @@
 
 ¿COMO SE JUEGA?
 
-- Adivina un numero secreto entre 1 y 100.
-- Escribe tu numero y presiona "ADIVINAR" o ENTER.
-- Recibiras pistas: "MAS ALTO" o "MAS BAJO".
-- El termometro muestra que tan cerca estas.
-- El historial guarda todos tus intentos.
-- Al acertar, aparece una pantalla de victoria.
-- Se guarda tu mejor puntaje (menos intentos).
+- Adivina un numero secreto entre 1 y 100
+- Escribe tu numero y presiona "ADIVINAR" o ENTER
+- Recibiras pistas: "MAS ALTO" o "MAS BAJO"
+- El termometro muestra que tan cerca estas
+- El historial guarda todos tus intentos
+- Al acertar, aparece una pantalla de victoria
+- Se guarda tu mejor puntaje (menos intentos)
 
 
 
@@ -25,7 +25,7 @@ COMO ABRIR EL JUEGO
 
 ARCHIVOS PRINCIPALES
 
-- index.html  → Pantalla del juego
-- main.js     → Lógica completa
-- style.css   → Diseño y animaciones
+- index.html  -- Pantalla del juego
+- main.js     -- Lógica completa
+- style.css   -- Diseño y animaciones
 
