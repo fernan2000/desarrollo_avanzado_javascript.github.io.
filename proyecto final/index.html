@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adivina el Numero</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="noise"></div>
+ 
+  <div class="container">
+    <header>
+      <div class="badge">VITE + VANILLA JS</div>
+      <h1>ADIVINA<br><span>EL NUMERO</span></h1>
+      <p class="subtitle">Un numero del <strong>1</strong> al <strong>100</strong> aguarda tu respuesta</p>
+    </header>
+ 
+    <div class="stats-bar">
+      <div class="stat">
+        <span class="stat-label">Intentos</span>
+        <span class="stat-value" id="intentos">0</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Mejor</span>
+        <span class="stat-value" id="mejor">--</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Rango</span>
+        <span class="stat-value" id="rango">1 — 100</span>
+      </div>
+    </div>
+ 
+    <div class="game-area">
+      <div class="thermometer-wrapper">
+        <div class="thermometer">
+          <div class="thermo-track">
+            <div class="thermo-fill" id="termoFill"></div>
+            <div class="thermo-marker" id="termoMarker"></div>
+          </div>
+          <div class="thermo-labels">
+            <span>100</span>
+            <span>50</span>
+            <span>1</span>
+          </div>
+        </div>
+        <div class="thermo-hint" id="termoHint">?</div>
+      </div>
+ 
+      <div class="input-zone">
+        <div class="input-wrapper">
+          <input
+            type="number"
+            id="numero"
+            min="1"
+            max="100"
+            placeholder="???"
+            autocomplete="off"
+          />
+          <button id="adivinar">ADIVINAR</button>
+        </div>
+ 
+        <div id="mensaje" class="mensaje"></div>
+ 
+        <div class="history-section">
+          <div class="history-label">Historial de intentos</div>
+          <div id="historial" class="historial"></div>
+        </div>
+      </div>
+    </div>
+ 
+    <div id="victoria" class="victoria hidden">
+      <div class="victoria-inner">
+        <div class="victoria-emoji">🎉</div>
+        <h2>¡ADIVINASTE!</h2>
+        <p id="victoriaMsg"></p>
+        <button id="reiniciar">JUGAR DE NUEVO</button>
+      </div>
+    </div>
+  </div>
+ 
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
